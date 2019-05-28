@@ -15,7 +15,7 @@ public class AnimalActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_change_type);
         img_switcher = findViewById(R.id.img_switcher);
-        img_switcher.setAnimType(TransitionsImageView.ANIM_ROTATE_IN_UP_LEFT );
+        img_switcher.setAnimType(TransitionsImageView.ANIM_FLIP_IN_X );
         img_switcher.setImage(R.drawable.pic_second);
         img_switcher.setOnClickListener(new View.OnClickListener() {
             @Override

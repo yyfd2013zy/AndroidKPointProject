@@ -13,6 +13,7 @@ import point.androidknowledge.com.aaaa.R;
 
 public class TransitionsImageView extends RelativeLayout {
     private String TAG = TransitionsImageView.class.getSimpleName();
+    public static final int ANIM_NONE = 0x00;//没有动画
     public static final int ANIM_SLIDE_IN_RIGHT = 0x01;//右侧滑入
     public static final int ANIM_SLIDE_IN_LEFT = 0x02;//左侧滑入
     public static final int ANIM_SLIDE_IN_UP = 0x03;//左侧滑入
@@ -23,6 +24,10 @@ public class TransitionsImageView extends RelativeLayout {
     public static final int ANIM_ROTATE_IN_UP_LEFT = 0x08;//左上角
     public static final int ANIM_FLIP_IN_X = 0x09;//翻页
     public static final int ANIM_ROLLIN_IN = 0x10;//x轴翻滚动
+    public static final int ANIM_RANDOM = 0x11;//随机动画
+    //动画集合
+    private int[] ANIMA_SET = new int[]{ANIM_NONE, ANIM_SLIDE_IN_RIGHT, ANIM_SLIDE_IN_LEFT, ANIM_SLIDE_IN_UP
+            , ANIM_SLIDE_IN_DOWN, ANIM_FADE_IN, ANIM_ZOOM_IN, ANIM_ROTATE_IN, ANIM_ROTATE_IN_UP_LEFT, ANIM_FLIP_IN_X, ANIM_ROLLIN_IN};
     public int mAnimType = 0x00;
     private boolean isInAnimal;//是否处于动画过程中
     private ImageView imageViewFirst, imageViewSecond;
@@ -55,7 +60,14 @@ public class TransitionsImageView extends RelativeLayout {
 
     public void setAnimType(int animType) {
         mAnimType = animType;
-        switch (animType) {
+        resultAnimation(mAnimType);
+    }
+
+    private void resultAnimation(int mAnimType) {
+        switch (mAnimType) {
+            case ANIM_NONE:
+                animation = AnimationUtils.loadAnimation(mContext, R.anim.anim_none);
+                break;
             case ANIM_SLIDE_IN_RIGHT:
                 animation = AnimationUtils.loadAnimation(mContext, R.anim.slide_in_right);
                 break;
@@ -93,6 +105,10 @@ public class TransitionsImageView extends RelativeLayout {
         if (isInAnimal) {
             Log.d(TAG, "Animation is being executed , Return！");
             return;
+        }
+        if (mAnimType == ANIM_RANDOM) {//随机动画
+            int mAnimT = ANIMA_SET[(int) (1 + Math.random() * ((ANIMA_SET.length - 1) - 1 + 1))];
+            resultAnimation(mAnimT);
         }
         if ((int) imageViewFirst.getTag(R.id.show) == 1) {
             imageViewSecond.setBackgroundResource(index);
