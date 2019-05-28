@@ -17,4 +17,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <item type="id" name="show"></item>
+
 </resources>

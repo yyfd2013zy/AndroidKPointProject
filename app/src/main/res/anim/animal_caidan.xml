@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set
+    android:fillAfter="true"
+    android:duration="3000"
+    android:shareInterpolator="@android:anim/accelerate_decelerate_interpolator"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--透明度从无到有-->
+    <alpha android:fromAlpha="0"
+        android:toAlpha="1"/>
+
+    <!--旋转两圈-->
+    <rotate
+        android:pivotY="50%"
+        android:pivotX="50%"
+        android:fromDegrees="0"
+        android:toDegrees="720"/>
+
+    <!--放大三倍-->
+    <scale android:pivotX="50%"
+        android:pivotY="50%"
+        android:fromXScale="0.1"
+        android:fromYScale="0.1"
+        android:toXScale="3"
+        android:toYScale="3"/>
+
+    <!--平移至中间位置-->
+    <translate
+        android:fromXDelta="0"
+        android:fromYDelta="0"
+        android:toXDelta="35%p"
+        android:toYDelta="42.5%p"/>
+
+</set>
